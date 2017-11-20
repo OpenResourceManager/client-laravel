@@ -1,0 +1,36 @@
+{
+  "name": "open-resource-manager/client-laravel",
+  "description": "ORM client library with enhancements for Laravel",
+  "type": "library",
+  "keywords": [
+    "orm",
+    "open resource manager",
+    "client",
+    "Larvel"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alex Markessinis",
+      "email": "markea125@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "open-resource-manager/client-php": "~1.0"
+  },
+  "psr-4": {
+    "App\\": "app/",
+    "OpenResourceManager\\Laravel\\": "src/"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "OpenResourceManager\\Laravel\\ORMClientServiceProvider"
+      ],
+      "aliases": {
+        "ORMClient": "OpenResourceManager\\Laravel\\Facade\\ORMClient"
+      }
+    }
+  }
+}
