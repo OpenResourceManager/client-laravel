@@ -6,16 +6,16 @@
  * Time: 2:59 PM
  */
 
-namespace OpenResourceManager\Laravel\Facade;
+namespace OpenResourceManager\Laravel;
 
 use Illuminate\Support\Facades\Facade;
 
-class ORMClient extends Facade
+class ORMFacade extends Facade
 {
 
     protected static function getFacadeAccessor()
     {
-        return 'ORMClient';
+        return 'orm';
     }
 
 }

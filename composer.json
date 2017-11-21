@@ -20,16 +20,15 @@
     "open-resource-manager/client-php": "~1.0"
   },
   "psr-4": {
-    "App\\": "app/",
     "OpenResourceManager\\Laravel\\": "src/"
   },
   "extra": {
     "laravel": {
       "providers": [
-        "OpenResourceManager\\Laravel\\ORMClientServiceProvider"
+        "OpenResourceManager\\Laravel\\ORMServiceProvider"
       ],
       "aliases": {
-        "ORMClient": "OpenResourceManager\\Laravel\\Facade\\ORMClient"
+        "ORM": "OpenResourceManager\\Laravel\\ORMFacade"
       }
     }
   }
