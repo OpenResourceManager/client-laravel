@@ -50,7 +50,7 @@ ORM_SESSION_TTL=59
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ORM;
+use OpenResourceManager\Laravel\Facade\ORM;
 use OpenResourceManager\Client\Account as AccountClient;
 
 class ExampleController extends Controller
