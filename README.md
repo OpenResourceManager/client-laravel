@@ -44,6 +44,29 @@ ORM_SESSION_TTL=59
 
 ### Usage:
 
+Using Helper Function
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use OpenResourceManager\Client\Account as AccountClient;
+
+class ExampleController extends Controller
+{
+    public function index()
+    {
+        $orm = getORMConnection();
+        $accountClient = new AccountClient($orm);
+        return $accountClient->getList()->raw_body;
+    }
+}
+```
+
+Using Facade:
+
 ```php
 <?php
 
