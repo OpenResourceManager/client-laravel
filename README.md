@@ -21,8 +21,8 @@ composer require open-resource-manager/client-laravel ~0.1
 
 Note, you only need to do this on Laravel < 5.5, since Laravel 5.5 has auto discover.
 
-* Add to `providers` array under `Package Service Providers`: `OpenResourceManager\Laravel\ORMServiceProvider:class`
-* Add to end of `aliases` array: `'ORM' => OpenResourceManager\Laravel\ORMFacade:class,`
+* Add to `providers` array under `Package Service Providers`: `OpenResourceManager\Laravel\ORMServiceProvider::class`
+* Add to end of `aliases` array: `'ORM' => OpenResourceManager\Laravel\Facade\ORM::class,`
  
 ##### Publish config:
 

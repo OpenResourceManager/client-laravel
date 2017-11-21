@@ -30,7 +30,7 @@
         "OpenResourceManager\\Laravel\\ORMServiceProvider"
       ],
       "aliases": {
-        "ORM": "OpenResourceManager\\Laravel\\ORMFacade"
+        "ORM": "OpenResourceManager\\Laravel\\Facade\\ORM"
       }
     }
   }
