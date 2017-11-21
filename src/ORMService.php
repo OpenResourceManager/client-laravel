@@ -9,19 +9,29 @@
 namespace OpenResourceManager\Laravel;
 
 use OpenResourceManager\ORM;
+use Illuminate\Support\Facades\Cache;
 
 class ORMService
 {
     private $orm;
 
-    public function __construct($secret, $host, $version, $port, $useSSL)
+    public function __construct($secret, $host, $version, $port, $useSSL, $sessionTTL)
     {
-        $mSecret = $this->validate($secret, null);
-        $mHost = $this->validate($host, null);
-        $mVersion = $this->validate($version, 1);
-        $mPort = $this->validate($port, 80);
-        $mUseSSL = $this->validate($useSSL, false);
-        $this->orm = new ORM($mSecret, $mHost, $mVersion, $mPort, $mUseSSL);
+
+        $ormSession = Cache::get('orm_session');
+        if (!empty($ormSession)) {
+            $this->orm = unserialize($ormSession);
+        } else {
+            $mSecret = $this->validate($secret, null);
+            $mHost = $this->validate($host, null);
+            $mVersion = $this->validate($version, 1);
+            $mPort = $this->validate($port, 80);
+            $mUseSSL = $this->validate($useSSL, false);
+            $mSessionTTL = $this->validate($sessionTTL, 59);
+            $mORM = new ORM($mSecret, $mHost, $mVersion, $mPort, $mUseSSL);
+            Cache::put('orm_session', serialize($mORM), $mSessionTTL);
+            $this->orm = $mORM;
+        }
     }
 
     private function validate($val, $default, $json = false)
