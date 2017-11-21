@@ -15,7 +15,7 @@ class ORMServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/orm.php' => config_path('orm.php'),
-        ], 'mongo');
+        ], 'orm');
     }
 
     /**
