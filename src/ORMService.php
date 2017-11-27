@@ -28,7 +28,7 @@ class ORMService
             $mPort = $this->validate($port, 80);
             $mUseSSL = $this->validate($useSSL, false);
             $mORM = new ORM($mSecret, $mHost, $mVersion, $mPort, $mUseSSL);
-            $mSessionTTL = intval($mORM->authResponse->headers['x-jwt-ttl']) - 1;
+            $mSessionTTL = (intval($mORM->authResponse->headers['x-jwt-ttl']) - 1);
             if ($mSessionTTL < 1) $mSessionTTL = 1;
             Cache::put('orm_session', serialize($mORM), $mSessionTTL);
             $this->orm = $mORM;
