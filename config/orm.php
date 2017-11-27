@@ -35,17 +35,5 @@ return [
     /*
      * Does your ORM instance use SSL / HTTPS?
      */
-    'use_ssl' => env('ORM_SSL', false),
-
-    /*
-     * Session TTL
-     *
-     * How long to cache ORM session for re-use to avoid repeated authentication attempts
-     *
-     * To be safe subtract 1 minute from JWT TTL on the ORM server
-     *
-     * Default: 59
-     *
-     */
-    'ttl' => env('ORM_SESSION_TTL', 59),
+    'use_ssl' => env('ORM_SSL', false)
 ];

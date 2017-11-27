@@ -34,8 +34,7 @@ class ORMServiceProvider extends ServiceProvider
             $port = $config->get('orm.port') ?: 80;
             $secret = $config->get('orm.secret');
             $useSSL = $config->get('orm.use_ssl') ?: false;
-            $sessionTTL = $config->get('orm.ttl') ?: 59;
-            return new ORMService($secret, $host, $version, $port, $useSSL, $sessionTTL);
+            return new ORMService($secret, $host, $version, $port, $useSSL);
         });
     }
 
