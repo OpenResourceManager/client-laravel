@@ -39,7 +39,6 @@ ORM_SECRET=klfnqjafjk890fhd89qmq39dfj90
 ORM_HOST=orm.example.com
 ORM_PORT=443
 ORM_SSL=true
-ORM_SESSION_TTL=59
 ```
 
 ### Usage:
