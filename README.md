@@ -43,7 +43,7 @@ ORM_SSL=true
 
 ### Usage:
 
-Using Helper Function
+#### Using Helper Function:
 
 ```php
 <?php
@@ -64,7 +64,7 @@ class ExampleController extends Controller
 }
 ```
 
-Using Facade:
+#### Using Facade:
 
 ```php
 <?php
@@ -82,6 +82,154 @@ class ExampleController extends Controller
         $orm = ORM::get();
         $accountClient = new AccountClient($orm);
         return $accountClient->getList()->raw_body;
+    }
+}
+```
+
+#### ORM Account Trait:
+
+Ensure that your user model has an `orm_id` attribute and it is set to the ORM ID of the account.
+
+##### Available Trait Methods:
+
+* `$user->account()` - Returns the entire ORM Account for that User.
+* `$user->emails()` - Returns the user's ORM Emails.
+* `$user->mobilePhones()` - Returns the user's ORM Mobile Phones.
+* `$user->addresses()` - Returns the user's ORM Addresses.
+* `$user->duties()` - Returns the user's ORM Duties.
+
+##### Setup and Examples
+
+Sample Users Migration:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('orm_id')->unique(); // Add this to your user's model and fill it with the related ORM Account ID.
+            $table->string('username');
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
+}
+```
+
+Sample User Model:
+
+```php
+<?php
+
+namespace App\Model;
+
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use OpenResourceManager\Laravel\Traits\OrmAccount; // Add the OrmAccount trait
+
+class User extends Authenticatable
+{
+    use HasApiTokens, Notifiable; 
+    use OrmAccount; // Add the OrmAccount trait
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'orm_id',
+        'username',
+        'password'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+}
+```
+
+Example Usage:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Model\User;
+
+class MyController extends Controller
+{
+    
+    /**
+    * Trait methods:
+    * 
+    * $user->account();
+    * $user->emails();
+    * $user->mobilePhones();
+    * $user->addresses();
+    * $user->duties(); 
+    */
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
+    * Shows a user's ORM Account
+    */
+    public function showUserAccount($id) 
+    {
+        $user = User::findOrFail($id);
+        
+        return $user->account(); // Returns the ORM account
+    }
+    
+    /**
+    * Shows a user's ORM Emails
+    */
+    public function showUserEmails($id) 
+    {
+        $user = User::findOrFail($id);
+        
+        return $user->emails(); // Returns the ORM emails
     }
 }
 ```
