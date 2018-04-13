@@ -98,6 +98,9 @@ Ensure that your user model has an `orm_id` attribute and it is set to the ORM I
 * `$user->addresses()` - Returns the user's ORM Addresses.
 * `$user->duties()` - Returns the user's ORM Duties.
 
+##### Available Trait Attributes:
+* `$user->account` - Returns the entire ORM Account for that User.
+
 ##### Setup and Examples
 
 Sample Users Migration:
