@@ -17,12 +17,13 @@ use OpenResourceManager\Laravel\Exception\ApiException;
 
 trait OrmAccount
 {
-    /**
-     * @var array
-     */
-    protected $appends = [
-        'account'
-    ];
+
+    protected function getArrayableAppends()
+    {
+        $this->appends = array_unique(array_merge($this->appends, ['account']));
+
+        return parent::getArrayableAppends();
+    }
 
     /**
      * @return mixed|object
