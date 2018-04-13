@@ -18,19 +18,42 @@ use OpenResourceManager\Laravel\Exception\ApiException;
 trait OrmAccount
 {
     /**
-     * @return mixed
+     * @var array
+     */
+    protected $appends = [
+        'account'
+    ];
+
+    /**
+     * @return mixed|object
+     */
+    public function getAccountAttribute()
+    {
+        try {
+            return $this->account();
+        } catch (ApiException $e) {
+            return (object)[];
+        }
+    }
+
+    /**
+     * @return object
      * @throws ApiException
      */
     public function account()
     {
-        $orm = getORMConnection();
-        $client = new AccountClient($orm);
-        $response = $client->get($this->orm_id);
+        if (!empty($this->orm_id)) {
+            $orm = getORMConnection();
+            $client = new AccountClient($orm);
+            $response = $client->get($this->orm_id);
 
-        if ($response->code === 200) {
-            return $response->body->data;
+            if ($response->code === 200) {
+                return $response->body->data;
+            } else {
+                throw new ApiException($response->raw_body, $response->code);
+            }
         } else {
-            throw new ApiException($response->raw_body, $response->code);
+            return (object)[];
         }
     }
 
@@ -41,15 +64,19 @@ trait OrmAccount
      */
     public function emails($page = 1)
     {
-        $orm = getORMConnection();
-        $client = new EmailClient($orm);
-        $client->setPage($page);
-        $response = $client->getForAccount($this->orm_id);
+        if (!empty($this->orm_id)) {
+            $orm = getORMConnection();
+            $client = new EmailClient($orm);
+            $client->setPage($page);
+            $response = $client->getForAccount($this->orm_id);
 
-        if ($response->code === 200) {
-            return $response->body->data;
+            if ($response->code === 200) {
+                return $response->body->data;
+            } else {
+                throw new ApiException($response->raw_body, $response->code);
+            }
         } else {
-            throw new ApiException($response->raw_body, $response->code);
+            return (object)[];
         }
     }
 
@@ -60,16 +87,20 @@ trait OrmAccount
      */
     public function mobilePhones($page = 1)
     {
-        $orm = getORMConnection();
-        $client = new MobileClient($orm);
+        if (!empty($this->orm_id)) {
+            $orm = getORMConnection();
+            $client = new MobileClient($orm);
 
-        $client->setPage($page);
-        $response = $client->getForAccount($this->orm_id);
+            $client->setPage($page);
+            $response = $client->getForAccount($this->orm_id);
 
-        if ($response->code === 200) {
-            return $response->body->data;
+            if ($response->code === 200) {
+                return $response->body->data;
+            } else {
+                throw new ApiException($response->raw_body, $response->code);
+            }
         } else {
-            throw new ApiException($response->raw_body, $response->code);
+            return (object)[];
         }
     }
 
@@ -80,16 +111,20 @@ trait OrmAccount
      */
     public function addresses($page = 1)
     {
-        $orm = getORMConnection();
-        $client = new AddressClient($orm);
+        if (!empty($this->orm_id)) {
+            $orm = getORMConnection();
+            $client = new AddressClient($orm);
 
-        $client->setPage($page);
-        $response = $client->getForAccount($this->orm_id);
+            $client->setPage($page);
+            $response = $client->getForAccount($this->orm_id);
 
-        if ($response->code === 200) {
-            return $response->body->data;
+            if ($response->code === 200) {
+                return $response->body->data;
+            } else {
+                throw new ApiException($response->raw_body, $response->code);
+            }
         } else {
-            throw new ApiException($response->raw_body, $response->code);
+            return (object)[];
         }
     }
 
@@ -100,16 +135,20 @@ trait OrmAccount
      */
     public function duties($page = 1)
     {
-        $orm = getORMConnection();
-        $client = new DutyClient($orm);
+        if (!empty($this->orm_id)) {
+            $orm = getORMConnection();
+            $client = new DutyClient($orm);
 
-        $client->setPage($page);
-        $response = $client->getForAccount($this->orm_id);
+            $client->setPage($page);
+            $response = $client->getForAccount($this->orm_id);
 
-        if ($response->code === 200) {
-            return $response->body->data;
+            if ($response->code === 200) {
+                return $response->body->data;
+            } else {
+                throw new ApiException($response->raw_body, $response->code);
+            }
         } else {
-            throw new ApiException($response->raw_body, $response->code);
+            return (object)[];
         }
     }
 }
