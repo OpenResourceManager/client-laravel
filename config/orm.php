@@ -35,5 +35,10 @@ return [
     /*
      * Does your ORM instance use SSL / HTTPS?
      */
-    'use_ssl' => env('ORM_SSL', false)
+    'use_ssl' => env('ORM_SSL', false),
+
+    /*
+     * How long trait responses should remain in the cache in minutes. False or 0 to disable.
+     */
+    'trait_response_cache_time' => env('ORM_TRAIT_CACHE_TTL', false)
 ];

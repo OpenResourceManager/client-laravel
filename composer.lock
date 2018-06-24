@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "97769c5ec35eaddb89370acdd4693b95",
     "content-hash": "e85a229c63bec3585d3a3714488a2803",
     "packages": [
         {
@@ -51,20 +50,20 @@
                 "https",
                 "rest"
             ],
-            "time": "2016-08-11 17:49:21"
+            "time": "2016-08-11T17:49:21+00:00"
         },
         {
             "name": "open-resource-manager/client-php",
-            "version": "v1.1.3",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenResourceManager/client-php.git",
-                "reference": "5782317c7b8f1a4ec28805cb8653ace1809c38a2"
+                "reference": "fa468e3425d32f97294fefed77a7f096f3f8cc86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/5782317c7b8f1a4ec28805cb8653ace1809c38a2",
-                "reference": "5782317c7b8f1a4ec28805cb8653ace1809c38a2",
+                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/fa468e3425d32f97294fefed77a7f096f3f8cc86",
+                "reference": "fa468e3425d32f97294fefed77a7f096f3f8cc86",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +96,7 @@
                 "open resource manager",
                 "orm"
             ],
-            "time": "2017-11-27 02:18:23"
+            "time": "2018-06-24T00:01:00+00:00"
         }
     ],
     "packages-dev": [],
